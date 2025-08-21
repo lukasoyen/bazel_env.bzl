@@ -21,7 +21,6 @@ bazel_env(
         "jdk": "@rules_java//toolchains:current_host_java_runtime",
         "python": "@rules_python//python:current_py_toolchain",
         "nodejs": "@nodejs_toolchains//:resolved_toolchain",
-        "rust": "@rules_rust//rust/toolchain:current_rust_toolchain",
         "rules_python_docs": "@rules_python_docs",
     } | (
         # toolchain_type targets are allowed with Bazel 9.0.0-pre.20250311.1 and later.
@@ -45,10 +44,9 @@ bazel_env(
         "pnpm": "@pnpm",
         "python": "$(PYTHON3)",
         "python_tool": ":python_tool",
-        "cargo": "$(CARGO)",
-        "rustfmt": "$(RUSTFMT)",
-        "rustc": "$(RUSTC)",
-        "rustdoc": "$(RUSTDOC)",
+        "cargo": "@rules_rust//tools/upstream_wrapper:cargo",
+        "rustc": "@rules_rust//tools/upstream_wrapper:rustc",
+        "rustfmt": "@rules_rust//tools/upstream_wrapper:rustfmt",
     } | MULTITOOL_TOOLS,
 )
 
